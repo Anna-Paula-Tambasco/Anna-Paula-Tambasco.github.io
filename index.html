@@ -60,19 +60,17 @@
         }
 
         /* --- Navbar Glassmorphism --- */
-        .glass-nav {
-            background: rgba(253, 251, 247, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
-        }
-
-        /* --- Faraway Timeline Styles --- */
+        /* --- Faraway Timeline Styles (Compact Staggered 2-Column Layout) --- */
         .faraway-timeline {
             position: relative;
-            max-width: 1000px;
+            max-width: 1060px;
             margin: 0 auto;
-            padding: 2rem 0;
+            padding: 1.5rem 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            column-gap: 72px;
+            row-gap: 2rem;
+            align-items: start;
         }
 
         /* The vertical center line */
@@ -90,20 +88,14 @@
 
         /* Timeline Items */
         .timeline-item {
-            padding: 10px 40px;
             position: relative;
             background-color: inherit;
-            width: 50%;
-            margin-bottom: 6rem;
-            clear: both;
-        }
-
-        .timeline-item.left {
-            left: 0;
+            width: 100%;
+            transition: opacity 0.3s ease, transform 0.3s ease;
         }
 
         .timeline-item.right {
-            left: 50%;
+            margin-top: 3.5rem;
         }
 
         /* The Dots (Nodes) */
@@ -112,23 +104,24 @@
             position: absolute;
             width: 12px;
             height: 12px;
-            right: -6px;
+            right: -42px;
             background-color: #ef4444; /* Bright red node */
             border-radius: 50%;
-            top: 24px;
+            top: 28px;
             z-index: 2;
+            box-shadow: 0 0 0 4px #FDFBF7;
         }
 
         .timeline-item.right::after {
-            left: -6px;
+            left: -42px;
             right: auto;
         }
 
-        /* The "Sticker" Card Design */
+        /* The "Sticker" Card Design (Executive Compact) */
         .faraway-sticker {
             background-color: #ffffff;
             border-radius: 12px;
-            padding: 2.5rem;
+            padding: 1.75rem;
             position: relative;
             box-shadow: 0 10px 30px -10px rgba(0,0,0,0.05);
             border: 1px solid rgba(226, 232, 240, 0.8);
@@ -137,7 +130,7 @@
         }
         
         .faraway-sticker:hover {
-            transform: translateY(-5px);
+            transform: translateY(-4px);
             box-shadow: 0 20px 40px -10px rgba(0,0,0,0.08);
         }
 
@@ -153,13 +146,13 @@
             inset: 0;
             background-color: #ffe4e6; /* Soft Sakura pink */
             border-radius: 12px;
-            transform: translate(12px, 12px);
+            transform: translate(10px, 10px);
             z-index: 0;
             transition: transform 0.3s ease;
         }
         
         .sticker-wrapper:hover::before {
-            transform: translate(16px, 16px);
+            transform: translate(14px, 14px);
         }
 
         .sticker-wrapper.blue-shadow::before { background-color: #e0f2fe; }
@@ -171,18 +164,18 @@
         /* The Kanji Badge */
         .kanji-badge {
             position: absolute;
-            top: -20px;
-            left: -20px;
+            top: -16px;
+            left: -16px;
             background-color: #ef4444;
             color: white;
-            width: 48px;
-            height: 48px;
+            width: 40px;
+            height: 40px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
             z-index: 20;
         }
@@ -190,39 +183,46 @@
         /* Subtitle / Reason */
         .timeline-reason {
             color: #ef4444;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 700;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.14em;
             text-transform: uppercase;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.35rem;
             display: block;
         }
         
         .timeline-title {
             font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
+            font-size: 1.65rem;
             color: #0F294D;
-            margin-bottom: 1.5rem;
-            line-height: 1.1;
+            margin-bottom: 0.85rem;
+            line-height: 1.15;
         }
         
         .timeline-desc {
             color: #475569;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.1rem;
+            font-size: 0.88rem;
         }
 
         /* Mobile Responsive Timeline */
         @media screen and (max-width: 768px) {
-            .faraway-timeline::after { left: 31px; }
-            .timeline-item {
-                width: 100%;
-                padding-left: 70px;
-                padding-right: 25px;
+            .faraway-timeline {
+                grid-template-columns: 1fr;
+                row-gap: 2.5rem;
             }
-            .timeline-item.right { left: 0%; }
-            .timeline-item.left::after, .timeline-item.right::after { left: 25px; }
+            .faraway-timeline::after { left: 24px; }
+            .timeline-item, .timeline-item.right {
+                width: 100%;
+                padding-left: 56px;
+                padding-right: 12px;
+                margin-top: 0;
+            }
+            .timeline-item.left::after, .timeline-item.right::after {
+                left: 18px;
+                right: auto;
+            }
             .sticker-wrapper::before { transform: translate(6px, 6px); }
         }
 
@@ -359,50 +359,60 @@
                                  <li>Projected +32% OPEX savings for offshore fleets.</li>
                              </ul>
                              
-                             <a href="https://risk-copilot-buzios-anna.streamlit.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-theme-ocean font-bold text-sm rounded-full hover:border-theme-coral hover:text-theme-coral transition-all">
-                                 <i class="fas fa-external-link-alt"></i> Access Live Web App
-                             </a>
-                             
-                             <div class="mt-6 p-4 bg-red-50 border border-red-100 rounded-xl relative overflow-hidden">
-                                 <div class="absolute -right-2 -bottom-2 text-red-100 text-6xl opacity-50"><i class="fas fa-microphone-alt"></i></div>
-                                 <p class="text-xs font-mono text-red-800 leading-relaxed relative z-10">
-                                     <span class="font-bold text-red-600 tracking-wider block mb-1">ANP RAA 2026 SELECTION</span>
-                                     * Selected to present technical findings at the upcoming ANP RAA 2026 (Annual Evaluation Meeting of the Brazilian National Petroleum Agency) — the premier national forum for technological innovation in oil, gas, and biofuels.
-                                 </p>
-                             </div>
-                         </div>
-                     </div>
+        <section id="projects" class="scroll-mt-28 mb-28">
+            <div class="text-center mb-10">
+                <h2 class="text-4xl font-serif font-bold text-theme-ocean mb-3">Research & Projects</h2>
+                <p class="text-gray-500 font-mono text-xs tracking-widest uppercase mb-6">Building real-world solutions</p>
+                
+                <!-- Strategic Category Filter -->
+                <div class="inline-flex flex-wrap justify-center gap-2 p-1.5 bg-white border border-gray-200 rounded-full shadow-sm">
+                    <button onclick="filterProjects('all', this)" class="filter-btn active px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-theme-ocean text-white transition-all">All (9)</button>
+                    <button onclick="filterProjects('offshore-ai', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono font-semibold text-gray-600 hover:text-theme-ocean transition-all">Offshore & ML</button>
+                    <button onclick="filterProjects('cad-naval', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono font-semibold text-gray-600 hover:text-theme-ocean transition-all">Naval & CAD 3D</button>
+                    <button onclick="filterProjects('policy-econ', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono font-semibold text-gray-600 hover:text-theme-ocean transition-all">Policy & Geopolitics</button>
                 </div>
-
-                <!-- ITEM 2 (RIGHT): China International College Students (GOLD MEDAL) -->
-                <div class="timeline-item right">
-                     <div class="sticker-wrapper red-shadow">
+            </div>
+            
+            <div class="faraway-timeline" id="projectsTimeline">
+                
+                <!-- ITEM 1 (LEFT): Risk Copilot Buzios (Unified Flagship Card) -->
+                <div class="timeline-item left" data-category="offshore-ai">
+                     <div class="sticker-wrapper">
                          <div class="faraway-sticker">
-                             <div class="kanji-badge bg-red-600">金</div> <!-- Gold -->
+                             <div class="kanji-badge">波</div> <!-- Wave -->
                              
-                             <span class="timeline-reason">CHINA INT'L INNOVATION COMPETITION (2026)</span>
-                             <h3 class="timeline-title">Risk Copilot Finals</h3>
+                             <span class="timeline-reason">FUNDED BY ANP &bull; GOLD MEDAL WINNER (2026)</span>
+                             <h3 class="timeline-title">Risk Copilot Búzios</h3>
                              <p class="timeline-desc">
-                                 Awarded the <strong>Gold Medal</strong> as <strong>Team Leader</strong> at the Finals of the China International College Students’ Innovation Competition (Brazil Regional, 2026) with the "Risk Copilot" project.
+                                 Digital twin optimizing the operability and structural safety of FPSO units in the pre-salt field. Trains neural network committees in Python across 11 years of ERA5 metocean Big Data to analyze critical phenomena (sloshing, thermal plumes), targeting >30% reduction in WOW downtime and +32% OPEX savings.
                              </p>
                              
-                             <div class="flex flex-wrap gap-3 mt-4">
-                                 <a href="https://drive.google.com/file/d/1RjxWYAqUbfOJTMphSSANDWJtijIqju45/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all">
-                                     <i class="fas fa-file-powerpoint text-orange-500"></i> View Slide Deck
+                             <div class="mb-4 p-3.5 bg-red-50 border border-red-100 rounded-xl relative overflow-hidden">
+                                 <div class="absolute -right-2 -bottom-2 text-red-100 text-5xl opacity-50"><i class="fas fa-trophy"></i></div>
+                                 <p class="text-[11px] font-mono text-red-900 leading-relaxed relative z-10">
+                                     <span class="font-bold text-red-600 tracking-wider block mb-0.5">GOLD MEDAL (TEAM LEADER) & ANP RAA SALVADOR</span>
+                                     &bull; Awarded <strong>Gold Medal</strong> as Team Leader at the China Int'l College Students' Innovation Competition (Brazil Regional, 2026).<br>
+                                     &bull; Presented on-site in <strong>Salvador, Bahia</strong> at the ANP RAA / PRH-ANP National Meeting (Oct 2026).
+                                 </p>
+                             </div>
+                             
+                             <div class="flex flex-wrap gap-2.5">
+                                 <a href="https://risk-copilot-buzios-anna.streamlit.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-theme-ocean text-white font-semibold text-xs rounded-full hover:bg-theme-coral transition-all">
+                                     <i class="fas fa-external-link-alt"></i> Live Web App
                                  </a>
-                                 <a href="https://drive.google.com/file/d/1DDPnl1lvjbeOwYkrrUBEupGMPq1aqhmQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all">
+                                 <a href="https://drive.google.com/file/d/1DDPnl1lvjbeOwYkrrUBEupGMPq1aqhmQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
                                      <i class="fas fa-image text-blue-500"></i> View Poster
                                  </a>
-                                 <button onclick="openModal('Finals_of_China_International_College_Students_Innovation_Competition_brazil.pdf')" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
-                                     <i class="fas fa-medal text-yellow-500"></i> Gold Medal Cert
+                                 <button onclick="openModal('Finals_of_China_International_College_Students_Innovation_Competition_brazil.pdf')" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
+                                     <i class="fas fa-medal text-yellow-500"></i> Gold Cert
                                  </button>
                              </div>
                          </div>
                      </div>
                 </div>
 
-                <!-- ITEM 3 (LEFT): Sino-Latam Streamline -->
-                <div class="timeline-item left">
+                <!-- ITEM 2 (RIGHT): Sino-Latam Streamline -->
+                <div class="timeline-item right" data-category="cad-naval">
                     <div class="sticker-wrapper blue-shadow">
                         <div class="faraway-sticker">
                             <div class="kanji-badge bg-blue-600">創</div> <!-- Create/Innovate -->
@@ -410,35 +420,25 @@
                             <span class="timeline-reason">CHINA-LATAM POVERTY CHALLENGE (2026)</span>
                             <h3 class="timeline-title">Sino-Latam Streamline</h3>
                             <p class="timeline-desc">
-                                Lead Naval Engineer and Workflow Coordinator for an off-grid Floating Hub ecosystem in the Amazon. Coordinated weekly cross-functional workflows, task assignments, and technical documentation. Spearheaded the physical retrofitting of the modular hubs, executing rigorous AutoCAD 3D drafting, advanced material research, and structural stability modeling to ensure resilience against extreme Amazonian flood pulses.
+                                Lead Naval Engineer & Workflow Coordinator for an off-grid Floating Hub ecosystem in the Amazon. Spearheaded modular physical retrofitting, AutoCAD 3D drafting, material research, and structural stability modeling resilient to extreme Amazonian flood pulses.
                             </p>
                             
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-mono rounded">Naval Retrofitting</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-mono rounded">AutoCAD 3D Modeling</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-mono rounded">Structural Stability</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-mono rounded">Workflow Coordination</span>
-                            </div>
-                            
-                            <div class="mb-6 p-4 bg-blue-50 border border-blue-100 rounded-xl relative overflow-hidden">
-                                <div class="absolute -right-2 -bottom-2 text-blue-100 text-6xl opacity-50"><i class="fas fa-medal"></i></div>
-                                <p class="text-xs font-mono text-blue-800 leading-relaxed relative z-10">
-                                    <span class="font-bold text-blue-600 tracking-wider block mb-1">SILVER MEDAL (TOP 12 WORLDWIDE) & OUTSTANDING RECORDER AWARD</span>
-                                    * Awarded the <strong>Silver Medal</strong>, advancing to Global Finals in Chile (Aug 2026) and awarded an Academic Exchange to China (2027). Uniquely honored with the individual <strong>Outstanding Recorder Certificate (Best Overall)</strong> across all participating global teams.
+                            <div class="mb-4 p-3.5 bg-blue-50 border border-blue-100 rounded-xl relative overflow-hidden">
+                                <div class="absolute -right-2 -bottom-2 text-blue-100 text-5xl opacity-50"><i class="fas fa-medal"></i></div>
+                                <p class="text-[11px] font-mono text-blue-900 leading-relaxed relative z-10">
+                                    <span class="font-bold text-blue-600 tracking-wider block mb-0.5">SILVER MEDAL (TOP 12) & OUTSTANDING RECORDER</span>
+                                    &bull; Awarded <strong>Silver Medal</strong> (Global Finals in Chile & 2027 China Exchange) and the individual <strong>Outstanding Recorder Certificate (Best Overall)</strong> across all global teams.
                                 </p>
                             </div>
                             
-                            <div class="flex flex-wrap gap-3">
-                                <a href="https://drive.google.com/file/d/1YkBpupL79vxY-lw1gGWhuahHYA1-De5a/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all">
-                                    <i class="fas fa-file-powerpoint text-orange-500"></i> View Slide Deck
+                            <div class="flex flex-wrap gap-2.5">
+                                <a href="https://drive.google.com/file/d/1aYHfXTDXRJGucJPwx3KMeDpqmYE6D6w8/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
+                                    <i class="fas fa-play-circle text-blue-500"></i> AutoCAD Prototype
                                 </a>
-                                <a href="https://drive.google.com/file/d/1aYHfXTDXRJGucJPwx3KMeDpqmYE6D6w8/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all">
-                                    <i class="fas fa-play-circle text-blue-500"></i> Watch AutoCAD Prototype
-                                </a>
-                                <button onclick="openModal('Finalist_Sino_Latam_Streamline.pdf')" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
-                                    <i class="fas fa-certificate text-yellow-500"></i> View Certificate
+                                <button onclick="openModal('Finalist_Sino_Latam_Streamline.pdf')" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
+                                    <i class="fas fa-certificate text-yellow-500"></i> Silver Cert
                                 </button>
-                                <button onclick="openModal('Outstanding_Recorder_Certificate.jpg')" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
+                                <button onclick="openModal('Outstanding_Recorder_Certificate.jpg')" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
                                     <i class="fas fa-award text-amber-600"></i> Recorder Award
                                 </button>
                             </div>
@@ -446,108 +446,54 @@
                     </div>
                 </div>
 
-                <!-- ITEM 4 (RIGHT): The Blue Diplomacy Network (GEEP) -->
-                <div class="timeline-item right">
-                    <div class="sticker-wrapper green-shadow">
-                        <div class="faraway-sticker">
-                            <div class="kanji-badge bg-teal-600">海</div> <!-- Sea/Ocean -->
-                            
-                            <span class="timeline-reason">2026 YOUTH INNOVATION CHALLENGE (GEEP & NAAEE)</span>
-                            <h3 class="timeline-title">The Blue Diplomacy Network</h3>
-                            <p class="timeline-desc">
-                                Co-Creator & EdTech Strategist. Recognized as a <strong>Global Finalist</strong> by the Global Environmental Education Partnership (GEEP), NAAEE, and the Ocean Affairs Council. Co-developed a multilingual (EN, PT, RU, JA) gamified platform featuring 3-player co-op "Regional Simulation Rooms" (diplomats, industry, NGOs), an integrated policy study center, an "Impact & Advocacy Hub," and an educator dashboard to demystify UNCLOS and tackle marine debris.
-                            </p>
-                            
-                            <div class="flex flex-wrap gap-2 mb-6">
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-mono rounded">UNCLOS & Maritime Law</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-mono rounded">EdTech Gamification</span>
-                                <span class="px-2 py-1 bg-gray-100 text-gray-600 text-[10px] font-mono rounded">Marine Conservation</span>
-                            </div>
-
-                            <div class="flex flex-wrap gap-3">
-                                <a href="https://thegeep.org/programs/youth-innovation-challenge/giovanna-paula-anna-rodrigues-tambasco" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-theme-ocean font-bold text-sm rounded-full hover:border-theme-coral hover:text-theme-coral transition-all">
-                                    <i class="fas fa-external-link-alt"></i> Official GEEP Profile
-                                </a>
-                                <button onclick="openModal('GEEP_Finalist_Cert.jpg')" class="inline-flex items-center justify-center gap-2 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
-                                    <i class="fas fa-certificate text-yellow-500"></i> View Certificate
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- ITEM 5 (LEFT): Global Development Public Policy (Grand Canal) -->
-                <div class="timeline-item left">
+                <!-- ITEM 3 (LEFT): Global Development Public Policy (Grand Canal) -->
+                <div class="timeline-item left" data-category="offshore-ai policy-econ">
                     <div class="sticker-wrapper orange-shadow">
                         <div class="faraway-sticker">
                             <div class="kanji-badge bg-orange-500">保</div> <!-- Protect -->
                             
-                            <span class="timeline-reason">TOP 35 GLOBAL AWARDEE (2026)</span>
+                            <span class="timeline-reason">TOP 35 GLOBAL AWARDEE &bull; RENMIN UNIV. (2026)</span>
                             <h3 class="timeline-title">Safeguarding the Grand Canal</h3>
                             <p class="timeline-desc">
-                                Co-authored the technical policy proposal <em>"Safeguarding the Grand Canal: Neural Networks and Hydro-Structural Digital Twins in Heritage Policy"</em> under the Protection of Cultural Diversity theme at the Global Development Public Policy Youth Innovation Contest Finals (Renmin University of China).
+                                Co-authored the technical policy proposal <em>"Safeguarding the Grand Canal: Neural Networks and Hydro-Structural Digital Twins in Heritage Policy"</em> at the Global Development Public Policy Youth Innovation Contest Finals.
                             </p>
 
-                            <div class="mb-6 p-4 bg-orange-50 border border-orange-100 rounded-xl relative overflow-hidden">
-                                <div class="absolute -right-2 -bottom-2 text-orange-100 text-6xl opacity-50"><i class="fas fa-plane-departure"></i></div>
-                                <p class="text-xs font-mono text-orange-900 leading-relaxed relative z-10">
-                                    <span class="font-bold text-orange-600 tracking-wider block mb-1">HONORABLE PROPOSAL AWARD & CHINA INVITATION</span>
-                                    * Awarded a <strong>Level II Travel Subsidy</strong> and invited to participate in the on-site programme in <strong>Beijing and Suzhou, China</strong>.
+                            <div class="mb-4 p-3.5 bg-orange-50 border border-orange-100 rounded-xl relative overflow-hidden">
+                                <div class="absolute -right-2 -bottom-2 text-orange-100 text-5xl opacity-50"><i class="fas fa-plane-departure"></i></div>
+                                <p class="text-[11px] font-mono text-orange-900 leading-relaxed relative z-10">
+                                    <span class="font-bold text-orange-600 tracking-wider block mb-0.5">HONORABLE PROPOSAL & CHINA INVITATION</span>
+                                    &bull; Awarded a <strong>Level II Travel Subsidy</strong> and invited to the on-site programme in <strong>Beijing and Suzhou, China</strong>.
                                 </p>
                             </div>
                             
-                            <button onclick="openModal('Global_Development_Public_Policy_Youth_Innovation_Contest_Finals_Protection_of_Cultural_Diversity.pdf')" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all">
+                            <button onclick="openModal('Global_Development_Public_Policy_Youth_Innovation_Contest_Finals_Protection_of_Cultural_Diversity.pdf')" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
                                 <i class="fas fa-certificate text-yellow-500"></i> View Certificate
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <!-- ITEM 6 (RIGHT): Risk Copilot Arctic -->
-                <div class="timeline-item right">
+                <!-- ITEM 4 (RIGHT): Risk Copilot Arctic -->
+                <div class="timeline-item right" data-category="offshore-ai">
                      <div class="sticker-wrapper purple-shadow">
                          <div class="faraway-sticker">
                             <div class="kanji-badge bg-purple-600">氷</div> <!-- Ice -->
                             
-                            <span class="timeline-reason">STRATEGIC EXPANSION</span>
+                            <span class="timeline-reason">OFFSHORE R&D EXPANSION (2026)</span>
                             <h3 class="timeline-title">Arctic Adaptation</h3>
                             <p class="timeline-desc">
-                                Developed a formal technological transfer proposal targeting Gazprom Neft Shelf and Rosatomflot to adapt the tropical framework for extreme ice-class stress at the Prirazlomnaya Platform.
+                                Authored a formal technology transfer proposal targeting Gazprom Neft Shelf and Rosatomflot to adapt tropical digital twin frameworks for extreme ice-class structural stress at the Prirazlomnaya Offshore Platform.
                             </p>
                             
-                            <a href="https://drive.google.com/file/d/1cwDmqF1cDTKTmCunRVypzvUeaIguXHXQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all mt-4">
+                            <a href="https://drive.google.com/file/d/1cwDmqF1cDTKTmCunRVypzvUeaIguXHXQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
                                 <i class="fas fa-file-pdf text-red-500"></i> View R&D Deck
                             </a>
                          </div>
                      </div>
                 </div>
 
-                <!-- ITEM 7 (LEFT): Maritime Financial Security -->
-                <div class="timeline-item left">
-                    <div class="sticker-wrapper red-shadow">
-                        <div class="faraway-sticker">
-                           <div class="kanji-badge bg-red-600">防</div> <!-- Defense/Protection -->
-                           
-                           <span class="timeline-reason">INT'L PRESENTATION - RUSSIA (2025)</span>
-                           <h3 class="timeline-title">Maritime Financial Security</h3>
-                           <p class="timeline-desc">
-                               Co-authored and presented the paper "The Sea as an Invisible Infrastructure of the Economy" at the V International Olympiad on Financial Security in Krasnoyarsk, Russia. Bridged Naval Engineering with Geopolitics, analyzing how maritime trade mechanisms are exploited for Trade-Based Money Laundering (TBML) and the critical vulnerabilities of port cybersecurity.
-                           </p>
-                           
-                           <div class="flex flex-wrap gap-3 mt-4">
-                               <a href="https://drive.google.com/file/d/16ZYJqBQE48TwLVN0Knm4nzL3hDoMWm43/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all">
-                                   <i class="fas fa-file-pdf text-red-500"></i> View Research Paper
-                               </a>
-                               <a href="https://drive.google.com/file/d/16dO25vfcsUvVPxFzyyYct179dnQYs126/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all">
-                                   <i class="fas fa-desktop text-blue-500"></i> View Presentation Deck
-                               </a>
-                           </div>
-                        </div>
-                    </div>
-               </div>
-
-                <!-- ITEM 8 (RIGHT): AutoCAD Drone -->
-                <div class="timeline-item right">
+                <!-- ITEM 5 (LEFT): AutoCAD Drone -->
+                <div class="timeline-item left" data-category="cad-naval">
                     <div class="sticker-wrapper blue-shadow">
                         <div class="faraway-sticker">
                            <div class="kanji-badge bg-blue-500">図</div> <!-- Diagram/Drawing -->
@@ -555,18 +501,66 @@
                            <span class="timeline-reason">ENGINEERING DESIGN (2025)</span>
                            <h3 class="timeline-title">UAV Drone CAD</h3>
                            <p class="timeline-desc">
-                               Independent industrial design project utilizing AutoCAD. Designed a complete 3D wireframe and solid model of a quadcopter Unmanned Aerial Vehicle (UAV), demonstrating proficiency in spatial geometry, component assembly, and technical drafting.
+                               Independent industrial design project utilizing AutoCAD. Designed a complete 3D wireframe and solid model of a quadcopter Unmanned Aerial Vehicle (UAV), demonstrating precision in spatial geometry, component assembly, and technical drafting.
                            </p>
                            
-                           <a href="https://drive.google.com/file/d/1fMynxrSNSRWqsDIZZutpD7kCxRybNFCk/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all mt-4">
+                           <a href="https://drive.google.com/file/d/1fMynxrSNSRWqsDIZZutpD7kCxRybNFCk/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
                                <i class="fas fa-video text-blue-500"></i> Watch CAD Render
                            </a>
                         </div>
                     </div>
                </div>
 
-                <!-- ITEM 9 (LEFT): Generative AI Media -->
-                <div class="timeline-item left">
+                <!-- ITEM 6 (RIGHT): The Blue Diplomacy Network (GEEP) -->
+                <div class="timeline-item right" data-category="policy-econ">
+                    <div class="sticker-wrapper green-shadow">
+                        <div class="faraway-sticker">
+                            <div class="kanji-badge bg-teal-600">海</div> <!-- Sea/Ocean -->
+                            
+                            <span class="timeline-reason">2026 YOUTH INNOVATION CHALLENGE (GEEP & NAAEE)</span>
+                            <h3 class="timeline-title">The Blue Diplomacy Network</h3>
+                            <p class="timeline-desc">
+                                Co-Creator & EdTech Strategist. Recognized as a <strong>Global Finalist</strong> by GEEP, NAAEE, and the Ocean Affairs Council. Co-developed a multilingual (EN, PT, RU, JA) gamified platform featuring 3-player co-op "Regional Simulation Rooms" and an educator dashboard to demystify UNCLOS and tackle marine debris.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2.5">
+                                <a href="https://thegeep.org/programs/youth-innovation-challenge/giovanna-paula-anna-rodrigues-tambasco" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-white border border-gray-200 text-theme-ocean font-bold text-xs rounded-full hover:border-theme-coral hover:text-theme-coral transition-all">
+                                    <i class="fas fa-external-link-alt"></i> Official GEEP Profile
+                                </a>
+                                <button onclick="openModal('GEEP_Finalist_Cert.jpg')" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
+                                    <i class="fas fa-certificate text-yellow-500"></i> View Certificate
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ITEM 7 (LEFT): Maritime Financial Security -->
+                <div class="timeline-item left" data-category="policy-econ">
+                    <div class="sticker-wrapper red-shadow">
+                        <div class="faraway-sticker">
+                           <div class="kanji-badge bg-red-600">防</div> <!-- Defense/Protection -->
+                           
+                           <span class="timeline-reason">INT'L PRESENTATION - RUSSIA (2025)</span>
+                           <h3 class="timeline-title">Maritime Financial Security</h3>
+                           <p class="timeline-desc">
+                               Co-authored and presented "The Sea as an Invisible Infrastructure of the Economy" at the V International Olympiad on Financial Security in Krasnoyarsk, Russia. Analyzed Trade-Based Money Laundering (TBML) and critical port cybersecurity vulnerabilities.
+                           </p>
+                           
+                           <div class="flex flex-wrap gap-2.5">
+                               <a href="https://drive.google.com/file/d/16ZYJqBQE48TwLVN0Knm4nzL3hDoMWm43/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
+                                   <i class="fas fa-file-pdf text-red-500"></i> Research Paper
+                               </a>
+                               <a href="https://drive.google.com/file/d/16dO25vfcsUvVPxFzyyYct179dnQYs126/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
+                                   <i class="fas fa-desktop text-blue-500"></i> Presentation Deck
+                               </a>
+                           </div>
+                        </div>
+                    </div>
+               </div>
+
+                <!-- ITEM 8 (RIGHT): Generative AI Media -->
+                <div class="timeline-item right" data-category="offshore-ai">
                      <div class="sticker-wrapper green-shadow">
                          <div class="faraway-sticker">
                             <div class="kanji-badge bg-green-500">縁</div> <!-- Connection/Edge -->
@@ -574,18 +568,18 @@
                             <span class="timeline-reason">DIGITAL MEDIA (2026)</span>
                             <h3 class="timeline-title">Generative AI Media</h3>
                             <p class="timeline-desc">
-                                Demonstrated practical mastery of LLM interaction by developing a fully synthetic audiovisual project. Leveraged advanced prompt engineering to direct, generate, and synchronize high-fidelity video sequences and custom audio tracks.
+                                Demonstrated practical mastery of LLM interaction by developing a fully synthetic audiovisual project, leveraging advanced prompt engineering to synchronize high-fidelity video sequences and custom audio tracks.
                             </p>
                             
-                            <a href="https://drive.google.com/file/d/1Xf33vn6mJenBWPlhawMMzjUa_J5H6gv4/view" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-700 font-bold text-sm rounded-full hover:bg-gray-50 transition-all mt-4">
+                            <a href="https://drive.google.com/file/d/1Xf33vn6mJenBWPlhawMMzjUa_J5H6gv4/view" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 bg-white border border-gray-200 text-gray-700 font-bold text-xs rounded-full hover:bg-gray-50 transition-all">
                                 <i class="fas fa-folder-open text-yellow-500"></i> Access BragBook
                             </a>
                          </div>
                      </div>
                 </div>
 
-                <!-- ITEM 10 (RIGHT): Maritime Economics & SCOOBY -->
-                <div class="timeline-item right">
+                <!-- ITEM 9 (LEFT): Maritime Economics & SCOOBY -->
+                <div class="timeline-item left" data-category="policy-econ">
                     <div class="sticker-wrapper orange-shadow">
                         <div class="faraway-sticker">
                            <div class="kanji-badge bg-orange-500">学</div> <!-- Learning/Academic -->
@@ -593,15 +587,15 @@
                            <span class="timeline-reason">ACADEMIC RESEARCH & BIOTECH</span>
                            <h3 class="timeline-title">Maritime Economics & SCOOBY</h3>
                            
-                           <div class="space-y-6">
+                           <div class="space-y-3">
                                <div>
-                                   <h4 class="text-sm font-bold text-theme-ocean">Container Shipping Geopolitics (2025)</h4>
-                                   <p class="text-sm text-gray-600 mb-2">Critical analysis evaluating shipowner strategies and the four major maritime economic cycles (freight, S&P, shipbuilding, demolition).</p>
+                                   <h4 class="text-xs font-bold text-theme-ocean">Container Shipping Geopolitics (2025)</h4>
+                                   <p class="text-xs text-gray-600">Critical analysis evaluating shipowner strategies and the four major maritime economic cycles.</p>
                                </div>
-                               <div class="border-t border-gray-100 pt-4">
-                                   <h4 class="text-sm font-bold text-theme-ocean">SCOOBY Biological Membranes (2021)</h4>
-                                   <p class="text-sm text-gray-600 mb-2">Developed a sustainable biological membrane system for water purification, aligning with ESG practices for the maritime sector.</p>
-                                   <a href="https://drive.google.com/file/d/1L5PBQCEetnkBQkxxY5d5rDrEBOfSPISI/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 px-4 py-1.5 bg-white border border-gray-200 text-gray-700 font-semibold text-xs rounded-full hover:bg-gray-50 transition-all">
+                               <div class="border-t border-gray-100 pt-3">
+                                   <h4 class="text-xs font-bold text-theme-ocean">SCOOBY Biological Membranes (2021)</h4>
+                                   <p class="text-xs text-gray-600 mb-2.5">Sustainable biological membrane system for water purification aligned with maritime ESG practices.</p>
+                                   <a href="https://drive.google.com/file/d/1L5PBQCEetnkBQkxxY5d5rDrEBOfSPISI/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-1.5 bg-white border border-gray-200 text-gray-700 font-semibold text-xs rounded-full hover:bg-gray-50 transition-all">
                                        <i class="fas fa-file-pdf text-red-500"></i> View Written Report
                                    </a>
                                </div>
@@ -678,9 +672,8 @@
                             <div class="relative z-10">
                                 <div class="flex flex-wrap items-center gap-2 mb-1">
                                     <strong class="text-gray-900 block text-lg">International Festival of Youth (2026)</strong>
-                                    <span class="px-2 py-0.5 bg-purple-200 text-purple-800 text-[10px] font-bold tracking-wider rounded animate-pulse">UPCOMING</span>
                                 </div>
-                                <span class="text-sm text-gray-700 block mb-4 font-medium leading-relaxed">Selected & Invited to join global leaders in science, education, and IT to shape the global youth agenda (Upcoming: Sep 11-17, 2026).</span>
+                                <span class="text-sm text-gray-700 block mb-4 font-medium leading-relaxed">Selected & Invited to join global leaders in science, education, and IT to shape the global youth agenda (Sep 11-17, 2026).</span>
                                 <div class="flex flex-wrap gap-3">
                                     <button onclick="openModal('International_Festival_of_Youth_2026.pdf')" class="text-xs font-bold text-theme-ocean hover:text-purple-700 bg-white px-4 py-2 rounded-lg border border-purple-200 shadow-sm transition-colors"><i class="fas fa-expand mr-1"></i> View Cert 1</button>
                                     <button onclick="openModal('Official_Invitation_to_International_Festival_of_Youth_2026.pdf')" class="text-xs font-bold text-theme-ocean hover:text-purple-700 bg-white px-4 py-2 rounded-lg border border-purple-200 shadow-sm transition-colors"><i class="fas fa-expand mr-1"></i> View Cert 2</button>
@@ -692,7 +685,8 @@
                             <div class="bg-blue-50 p-2 rounded-lg mr-4"><i class="fas fa-microphone-alt text-theme-ocean"></i></div>
                             <div>
                                 <strong class="text-gray-900 block mb-1">Invited Presenter & Researcher</strong>
-                                <span class="text-sm text-gray-600">ANP RAA (Oct 2026) - Selected to present the "Risk Copilot Búzios" digital twin to industry leaders.</span>
+                                <span class="text-sm text-gray-600 block mb-2">ANP RAA / PRH-ANP National Meeting (Salvador, Bahia – Oct 2026) - Presented the "Risk Copilot Búzios" offshore digital twin on-site to industry leaders.</span>
+                                <button onclick="openModal('ANP_Presentation_Cert.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> Presentation Cert</button>
                             </div>
                         </li>
                         <li class="flex items-start bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
@@ -946,6 +940,33 @@
                 closeModal();
             }
         });
+
+        // --- Strategic Category Filter Logic ---
+        function filterProjects(category, btnElement) {
+            // Update active button style
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-theme-ocean', 'text-white');
+                btn.classList.add('text-gray-600');
+            });
+            btnElement.classList.remove('text-gray-600');
+            btnElement.classList.add('bg-theme-ocean', 'text-white');
+
+            const items = document.querySelectorAll('#projectsTimeline .timeline-item');
+            let visibleIndex = 0;
+
+            items.forEach(item => {
+                const categories = item.getAttribute('data-category') || '';
+                if (category === 'all' || categories.includes(category)) {
+                    item.classList.remove('hidden');
+                    // Re-assign left/right dynamically so the timeline stays balanced
+                    item.classList.remove('left', 'right');
+                    item.classList.add(visibleIndex % 2 === 0 ? 'left' : 'right');
+                    visibleIndex++;
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
     </script>
 </body>
 </html>
