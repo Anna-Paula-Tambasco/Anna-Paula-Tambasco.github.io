@@ -263,15 +263,63 @@
         .nav-link:hover {
             color: #ef4444;
         }
+
+        /* --- Auto-Scrolling Global Footprint Carousel --- */
+        .footprint-viewport {
+            overflow: hidden;
+            position: relative;
+            width: 100%;
+            padding: 0.75rem 0;
+            mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%);
+        }
+
+        .footprint-track {
+            display: flex;
+            gap: 1.25rem;
+            width: max-content;
+            animation: scrollFootprint 58s linear infinite;
+        }
+
+        .footprint-track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scrollFootprint {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .footprint-card {
+            width: 280px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 0.65rem;
+            border: 1px solid rgba(226, 232, 240, 0.9);
+            box-shadow: 0 8px 20px -8px rgba(15, 41, 77, 0.08);
+            flex-shrink: 0;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footprint-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 16px 30px -10px rgba(15, 41, 77, 0.14);
+            border-color: #fca5a5;
+        }
     </style>
 </head>
 <body class="antialiased">
 
     <nav class="fixed w-full z-50 glass-nav transition-all duration-300">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="font-serif font-bold text-xl tracking-wider text-theme-ocean">A.T.</a>
+        <div class="max-w-6xl mx-auto px-6 py-3.5 flex justify-between items-center">
+            <a href="#" class="font-serif font-bold text-lg tracking-wider text-theme-ocean flex items-center gap-2">
+                <span>A.T.</span>
+                <span class="hidden sm:inline-block text-xs font-sans font-normal text-gray-400 border-l border-gray-200 pl-2">Anna Paula Tambasco</span>
+            </a>
             <div class="hidden md:flex space-x-8 text-sm font-medium text-gray-600">
                 <a href="#profile" class="nav-link">Profile</a>
+                <a href="#footprint" class="nav-link">Global Footprint</a>
                 <a href="#projects" class="nav-link">Projects</a>
                 <a href="#trajectory" class="nav-link">Trajectory</a>
                 <a href="#endorsements" class="nav-link">Endorsements</a>
@@ -283,81 +331,244 @@
         </div>
     </nav>
 
-    <div class="max-w-6xl mx-auto px-6 pt-32 pb-20">
+    <div class="max-w-6xl mx-auto px-6 pt-24 pb-20">
         
-        <!-- Hero Section -->
-        <header id="profile" class="scroll-mt-32 mb-24 grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
-            <div class="md:col-span-8">
-                <div class="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full text-xs font-mono text-gray-500 mb-6 shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                    Available for Global Opportunities
+        <!-- Hero Section (Executive & Balanced Above-the-Fold) -->
+        <header id="profile" class="scroll-mt-28 mb-16">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center mb-10">
+                <div class="md:col-span-8">
+                    <div class="flex flex-wrap items-center gap-2.5 mb-4">
+                        <span class="px-3 py-1 bg-theme-ocean text-white rounded-full text-[11px] font-mono font-semibold tracking-wider uppercase">
+                            Anna Paula Tambasco
+                        </span>
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-white border border-gray-200 rounded-full text-[11px] font-mono text-gray-600 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                            Available for Global Opportunities
+                        </div>
+                    </div>
+
+                    <h1 class="text-4xl sm:text-5xl lg:text-[3.25rem] font-serif font-bold text-theme-ocean mb-4 leading-[1.15] tracking-tight">
+                        Naval Engineering <br><span class="text-theme-coral italic font-light">meets Machine Learning.</span>
+                    </h1>
+
+                    <p class="text-base text-gray-600 leading-relaxed mb-6 max-w-2xl">
+                        Naval & Ocean Engineering undergraduate researcher at <strong>UFRJ (LAMCE/COPPE)</strong> focused on structural integrity, operational efficiency, and offshore asset safety. Leveraging Python, Neural Networks, and 3D CAD to build Digital Twins and Decision Support Systems for the energy and maritime sectors.
+                    </p>
+                    
+                    <!-- Key Institutional Pillars -->
+                    <div class="grid grid-cols-3 gap-3 max-w-xl mb-6">
+                        <div class="bg-white/90 border border-gray-200 rounded-xl p-3 shadow-sm">
+                            <span class="block text-[10px] font-mono text-gray-400 uppercase">Research</span>
+                            <span class="font-bold text-xs sm:text-sm text-theme-ocean">ANP PRH-04 &bull; UFRJ</span>
+                        </div>
+                        <div class="bg-white/90 border border-gray-200 rounded-xl p-3 shadow-sm">
+                            <span class="block text-[10px] font-mono text-gray-400 uppercase">Exchange</span>
+                            <span class="font-bold text-xs sm:text-sm text-theme-ocean">Tsinghua Univ. 清華</span>
+                        </div>
+                        <div class="bg-white/90 border border-gray-200 rounded-xl p-3 shadow-sm">
+                            <span class="block text-[10px] font-mono text-gray-400 uppercase">Recognition</span>
+                            <span class="font-bold text-xs sm:text-sm text-theme-coral">Gold & Silver Medalist</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap items-center gap-3 text-xs font-medium">
+                        <a href="https://www.linkedin.com/in/anna-paula-tambasco-b1263428b" target="_blank" class="px-5 py-2.5 bg-theme-ocean text-white rounded-full shadow-sm hover:bg-theme-coral transition-colors flex items-center gap-2">
+                            <i class="fab fa-linkedin"></i> LinkedIn Profile
+                        </a>
+                        <a href="https://github.com/Anna-Paula-Tambasco" target="_blank" class="px-5 py-2.5 bg-white border border-gray-200 text-theme-ocean rounded-full shadow-sm hover:border-theme-ocean transition-colors flex items-center gap-2">
+                            <i class="fab fa-github text-gray-800"></i> GitHub Profile
+                        </a>
+                        <div class="flex items-center gap-2.5 text-gray-500 text-xs font-mono pl-1">
+                            <span><i class="fas fa-map-marker-alt text-theme-coral"></i> Rio de Janeiro</span>
+                            <span>&bull;</span>
+                            <a href="mailto:annapaulatambasco@gmail.com" class="hover:text-theme-ocean transition-colors"><i class="fas fa-envelope text-theme-coral"></i> annapaulatambasco@gmail.com</a>
+                        </div>
+                    </div>
                 </div>
-                <h1 class="text-5xl md:text-7xl font-serif font-bold text-theme-ocean mb-6 leading-tight">
-                    Naval Engineering <br><span class="text-theme-coral italic font-light">meets Machine Learning.</span>
-                </h1>
-                <p class="text-lg text-gray-600 leading-relaxed mb-8 max-w-2xl">
-                    Undergraduate researcher at UFRJ focused on the intersection of structural integrity, operational efficiency, and the safety of offshore assets. Currently leveraging Python and Neural Networks to build Decision Support Systems for the offshore energy sector.
-                </p>
                 
-                <div class="flex flex-wrap gap-4 text-sm font-medium">
-                    <a href="https://www.linkedin.com/in/anna-paula-tambasco-b1263428b" target="_blank" class="px-6 py-3 bg-white border border-gray-200 text-theme-ocean rounded-full shadow-sm hover:border-theme-ocean transition-colors flex items-center gap-2">
-                        <i class="fab fa-linkedin text-[#0A66C2]"></i> LinkedIn Profile
-                    </a>
-                    <a href="https://github.com/Anna-Paula-Tambasco" target="_blank" class="px-6 py-3 bg-white border border-gray-200 text-theme-ocean rounded-full shadow-sm hover:border-theme-ocean transition-colors flex items-center gap-2">
-                        <i class="fab fa-github text-gray-800"></i> GitHub Profile
-                    </a>
-                    <div class="flex items-center gap-3 text-gray-500 text-xs font-mono px-4">
-                        <span><i class="fas fa-map-marker-alt text-theme-coral"></i> Rio de Janeiro, Brazil</span>
-                        <span>&bull;</span>
-                        <span><i class="fas fa-envelope text-theme-coral"></i> annapaulatambasco@gmail.com</span>
+                <div class="md:col-span-4 flex justify-center md:justify-end relative">
+                    <!-- Decorative Kanjis -->
+                    <div class="absolute -top-4 -left-2 md:-left-4 w-14 h-14 rounded-full bg-red-50 text-theme-coral flex items-center justify-center font-serif text-xl border border-red-100 shadow-sm z-10 rotate-12">海</div>
+                    <div class="absolute -bottom-3 -right-2 md:-right-3 w-11 h-11 rounded-full bg-blue-50 text-theme-ocean flex items-center justify-center font-serif text-lg border border-blue-100 shadow-sm z-10 -rotate-12">創</div>
+                    
+                    <!-- Profile Image -->
+                    <div class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-white shadow-xl">
+                        <img src="profile.jpg" onerror="this.src='https://placehold.co/400x400/e2e8f0/64748b?text=Anna+Paula'" alt="Anna Paula Tambasco" class="w-full h-full object-cover">
                     </div>
                 </div>
             </div>
-            
-            <div class="md:col-span-4 flex justify-center md:justify-end relative">
-                <!-- Decorative Kanjis -->
-                <div class="absolute -top-6 -left-6 w-16 h-16 rounded-full bg-red-50 text-theme-coral flex items-center justify-center font-serif text-2xl border border-red-100 shadow-sm z-10 rotate-12">海</div>
-                <div class="absolute -bottom-4 -right-4 w-12 h-12 rounded-full bg-blue-50 text-theme-ocean flex items-center justify-center font-serif text-xl border border-blue-100 shadow-sm z-10 -rotate-12">創</div>
-                
-                <!-- Profile Image Placeholder -->
-                <div class="w-80 h-80 md:w-96 md:h-96 rounded-full overflow-hidden border-4 border-white shadow-xl">
-                    <img src="profile.jpg" onerror="this.src='https://placehold.co/400x400/e2e8f0/64748b?text=Anna+Paula'" alt="Anna Paula Tambasco" class="w-full h-full object-cover">
+
+            <!-- Integrated Core Competencies Bar (Visible on First Screen) -->
+            <div class="pt-6 border-t border-gray-200/70">
+                <div class="flex flex-wrap items-center justify-center gap-2.5">
+                    <span class="text-[11px] font-bold tracking-widest text-gray-400 uppercase mr-2">Core Competencies:</span>
+                    <span class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-mono text-theme-ocean shadow-sm"><i class="fas fa-ship text-blue-800 mr-1.5"></i>Offshore Dynamics</span>
+                    <span class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-mono text-theme-ocean shadow-sm"><i class="fas fa-drafting-compass text-red-500 mr-1.5"></i>AutoCAD 3D</span>
+                    <span class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-mono text-theme-ocean shadow-sm"><i class="fab fa-python text-blue-500 mr-1.5"></i>Python</span>
+                    <span class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-mono text-theme-ocean shadow-sm"><i class="fas fa-network-wired text-purple-500 mr-1.5"></i>Neural Networks</span>
+                    <span class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-mono text-theme-ocean shadow-sm"><i class="fas fa-database text-gray-500 mr-1.5"></i>Big Data (ERA5)</span>
+                    <span class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-mono text-theme-ocean shadow-sm"><i class="fas fa-chart-line text-blue-400 mr-1.5"></i>Data Analysis</span>
+                    <span class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-mono text-theme-ocean shadow-sm"><i class="fas fa-book-open text-amber-600 mr-1.5"></i>UNCLOS & ISM Code</span>
+                    <span class="px-3 py-1.5 bg-white border border-gray-200 rounded-lg text-xs font-mono text-theme-ocean shadow-sm"><i class="fas fa-leaf text-green-500 mr-1.5"></i>ESG Sustainability</span>
                 </div>
             </div>
         </header>
 
-        <div class="mb-24">
-            <p class="text-xs font-bold tracking-widest text-gray-400 uppercase mb-4 text-center">Core Competencies</p>
-            <div class="flex flex-wrap justify-center gap-3">
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-mono text-theme-ocean shadow-sm"><i class="fab fa-python text-blue-500 mr-2"></i>Python</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-mono text-theme-ocean shadow-sm"><i class="fas fa-network-wired text-purple-500 mr-2"></i>Neural Networks</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-mono text-theme-ocean shadow-sm"><i class="fas fa-chart-line text-blue-400 mr-2"></i>Data Analysis</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-mono text-theme-ocean shadow-sm"><i class="fas fa-drafting-compass text-red-500 mr-2"></i>AutoCAD</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-mono text-theme-ocean shadow-sm"><i class="fas fa-ship text-blue-800 mr-2"></i>Offshore Dynamics</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-mono text-theme-ocean shadow-sm"><i class="fas fa-book-open text-amber-600 mr-2"></i>UNCLOS & ISM Code</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-mono text-theme-ocean shadow-sm"><i class="fas fa-leaf text-green-500 mr-2"></i>ESG Sustainability</span>
-                <span class="px-4 py-2 bg-white border border-gray-200 rounded-lg text-sm font-mono text-theme-ocean shadow-sm"><i class="fas fa-database text-gray-500 mr-2"></i>Big Data (ERA5)</span>
+        <!-- Auto-Scrolling Global Footprint & Engineering in Action Carousel -->
+        <section id="footprint" class="scroll-mt-24 mb-20">
+            <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-5 gap-2">
+                <div>
+                    <span class="text-[11px] font-mono font-bold text-theme-coral uppercase tracking-widest block mb-0.5">International & Industry Presence</span>
+                    <h2 class="text-2xl md:text-3xl font-serif font-bold text-theme-ocean">Global Footprint & Conferences in Action</h2>
+                </div>
+                <p class="text-xs font-mono text-gray-400"><i class="fas fa-hand-pointer text-theme-coral mr-1"></i>Hover to pause &bull; Click any photo to expand</p>
             </div>
-        </div>
 
-        <section id="projects" class="scroll-mt-28 mb-28">
+            <div class="footprint-viewport">
+                <div class="footprint-track" id="footprintTrack">
+                    
+                    <!-- Photo 1: Podium Pitch in Chile -->
+                    <div class="footprint-card" onclick="openModal('photo_chile_podium_1.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_chile_podium_1.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=Chile+Podium+Pitch'" alt="Speaking at Podium in Chile" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🇨🇱 Santiago, Chile</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">Finalist Pitch on Stage — UC Chile</p>
+                        <p class="text-[11px] text-gray-500 truncate">Sino-Latam Poverty Alleviation Finals (2026)</p>
+                    </div>
+
+                    <!-- Photo 2: ANP Poster Presentation in Salvador -->
+                    <div class="footprint-card" onclick="openModal('photo_anp_poster.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_anp_poster.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=ANP+Poster+Bahia'" alt="Presenting Risk Copilot Poster at ANP RAA" class="w-full h-full object-cover object-top">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🇧🇷 Salvador, Bahia</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">Offshore Digital Twin Poster — ANP RAA</p>
+                        <p class="text-[11px] text-gray-500 truncate">Presenting PRH-04/UFRJ Research to Industry</p>
+                    </div>
+
+                    <!-- Photo 3: Live Q&A Defense with Amazon Slide (NEW) -->
+                    <div class="footprint-card" onclick="openModal('photo_chile_qa_stage.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_chile_qa_stage.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=Amazon+Hub+Q%26A+Defense'" alt="Live Q&A Defense on Stage in Chile" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">⚓ Technical Q&amp;A</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">Executive Q&amp;A Defense — Floating Hub</p>
+                        <p class="text-[11px] text-gray-500 truncate">Defending Amazonian Naval Retrofitting to Jury</p>
+                    </div>
+
+                    <!-- Photo 4: Russia Stage with Flag -->
+                    <div class="footprint-card" onclick="openModal('photo_russia_flag.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_russia_flag.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=Russia+Finals+Stage'" alt="Representing Brazil in Krasnoyarsk, Russia" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🇷🇺 Krasnoyarsk, Russia</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">V Int'l Olympiad on Financial Security</p>
+                        <p class="text-[11px] text-gray-500 truncate">Representing Brazil at the Global Finals</p>
+                    </div>
+
+                    <!-- Photo 5: UChile Team Backdrop (NEW) -->
+                    <div class="footprint-card" onclick="openModal('photo_uchile_team.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_uchile_team.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=Sino-LatAm+Team+UChile'" alt="Sino-Latam Streamline Team at Universidad de Chile" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🇨🇱🇨🇳🇵🇪 Sino-LatAm Team</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">Sino-Latam Streamline Core Team</p>
+                        <p class="text-[11px] text-gray-500 truncate">International Delegation at Universidad de Chile</p>
+                    </div>
+
+                    <!-- Photo 6: Japanese Oratory Silver Medal on Stage (NEW) -->
+                    <div class="footprint-card" onclick="openModal('photo_nikkei_oratory.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_nikkei_oratory.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=Japanese+Oratory+Silver'" alt="Receiving Silver Medal at Japanese Oratory Contest" class="w-full h-full object-cover object-top">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🇯🇵🇧🇷 Assoc. Nikkei 連盟</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">Silver Medalist (2nd Place) — 47th Oratory</p>
+                        <p class="text-[11px] text-gray-500 truncate">Japanese Speech Contest Award Ceremony (2026)</p>
+                    </div>
+
+                    <!-- Photo 7: Multicultural Teamwork in Chile -->
+                    <div class="footprint-card" onclick="openModal('photo_chile_teamwork.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_chile_teamwork.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=Multicultural+Workflow'" alt="Cross-cultural teamwork in Chile" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🤝 Cross-Cultural R&amp;D</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">Multicultural Engineering Workflow</p>
+                        <p class="text-[11px] text-gray-500 truncate">Collaborating with Chinese &amp; LatAm Researchers</p>
+                    </div>
+
+                    <!-- Photo 8: SENAI CIMATEC Bahia -->
+                    <div class="footprint-card" onclick="openModal('photo_senai_cimatec.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_senai_cimatec.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=SENAI+CIMATEC'" alt="Technical Visit at SENAI CIMATEC" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🇧🇷 Salvador, Bahia</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">SENAI CIMATEC Innovation Hub</p>
+                        <p class="text-[11px] text-gray-500 truncate">Technical Mission &amp; Research Exchange</p>
+                    </div>
+
+                    <!-- Photo 9: Receiving Silver Medal on Stage in Chile -->
+                    <div class="footprint-card" onclick="openModal('photo_chile_award.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_chile_award.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=Silver+Medal+Stage'" alt="Award Ceremony in Chile" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🏅 Award Ceremony</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">Silver Medal &amp; Outstanding Recorder</p>
+                        <p class="text-[11px] text-gray-500 truncate">China-LatAm Challenge Global Finals (2026)</p>
+                    </div>
+
+                    <!-- Photo 10: Lab Technical Visit in Chile (NEW) -->
+                    <div class="footprint-card" onclick="openModal('photo_chile_lab.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_chile_lab.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=R%26D+Laboratory+Visit'" alt="Laboratory Technical Visit in Chile" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🔬 Lab Immersion</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">International R&amp;D Laboratory Visit</p>
+                        <p class="text-[11px] text-gray-500 truncate">Applied Science &amp; Water Treatment Exchange</p>
+                    </div>
+
+                    <!-- Photo 11: International Delegates in Russia -->
+                    <div class="footprint-card" onclick="openModal('photo_russia_delegates.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_russia_delegates.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=Global+Networking'" alt="International Delegates in Russia" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">🌍 Global Networking</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">International Youth Diplomacy</p>
+                        <p class="text-[11px] text-gray-500 truncate">Connecting with Delegates in Siberia, Russia</p>
+                    </div>
+
+                    <!-- Photo 12: PRH-ANP Badge -->
+                    <div class="footprint-card" onclick="openModal('photo_anp_badge.jpg')">
+                        <div class="relative h-44 w-full rounded-lg overflow-hidden bg-slate-100 mb-2.5">
+                            <img src="photo_anp_badge.jpg" onerror="this.src='https://placehold.co/600x400/0F294D/FFFFFF?text=PRH-ANP+UFRJ'" alt="PRH-ANP National Meeting Badge" class="w-full h-full object-cover">
+                            <span class="absolute top-2 left-2 px-2.5 py-0.5 bg-slate-900/80 backdrop-blur-sm text-white text-[10px] font-mono rounded-full">⚓ PRH-ANP &bull; UFRJ</span>
+                        </div>
+                        <p class="text-xs font-bold text-theme-ocean truncate">ANP National Meeting Delegate</p>
+                        <p class="text-[11px] text-gray-500 truncate">Representing UFRJ &amp; LAMCE/COPPE</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="scroll-mt-24 mb-24">
             <div class="text-center mb-10">
-                <h2 class="text-4xl font-serif font-bold text-theme-ocean mb-3">Research & Projects</h2>
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-theme-ocean mb-2">Research & Projects</h2>
                 <p class="text-gray-500 font-mono text-xs tracking-widest uppercase mb-6">Building real-world solutions</p>
                 
-                <!-- Strategic Category Filter -->
+                <!-- Strategic Category Filter: Naval & Offshore | ML & CAD 3D | Policy & Geopolitics -->
                 <div class="inline-flex flex-wrap justify-center gap-2 p-1.5 bg-white border border-gray-200 rounded-full shadow-sm">
                     <button onclick="filterProjects('all', this)" class="filter-btn active px-4 py-1.5 rounded-full text-xs font-mono font-semibold bg-theme-ocean text-white transition-all">All (9)</button>
-                    <button onclick="filterProjects('offshore-ai', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono font-semibold text-gray-600 hover:text-theme-ocean transition-all">Offshore & ML</button>
-                    <button onclick="filterProjects('cad-naval', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono font-semibold text-gray-600 hover:text-theme-ocean transition-all">Naval & CAD 3D</button>
+                    <button onclick="filterProjects('naval-offshore', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono font-semibold text-gray-600 hover:text-theme-ocean transition-all">Naval & Offshore</button>
+                    <button onclick="filterProjects('ml-cad', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono font-semibold text-gray-600 hover:text-theme-ocean transition-all">ML & CAD 3D</button>
                     <button onclick="filterProjects('policy-econ', this)" class="filter-btn px-4 py-1.5 rounded-full text-xs font-mono font-semibold text-gray-600 hover:text-theme-ocean transition-all">Policy & Geopolitics</button>
                 </div>
             </div>
             
             <div class="faraway-timeline" id="projectsTimeline">
                 
-                <!-- ITEM 1 (LEFT): Risk Copilot Buzios (Unified Flagship Card) -->
-                <div class="timeline-item left" data-category="offshore-ai">
+                <!-- ITEM 1 (LEFT): Risk Copilot Buzios -->
+                <div class="timeline-item left" data-category="naval-offshore ml-cad">
                      <div class="sticker-wrapper">
                          <div class="faraway-sticker">
                              <div class="kanji-badge">波</div> <!-- Wave -->
@@ -393,7 +604,7 @@
                 </div>
 
                 <!-- ITEM 2 (RIGHT): Sino-Latam Streamline -->
-                <div class="timeline-item right" data-category="cad-naval">
+                <div class="timeline-item right" data-category="naval-offshore ml-cad">
                     <div class="sticker-wrapper blue-shadow">
                         <div class="faraway-sticker">
                             <div class="kanji-badge bg-blue-600">創</div> <!-- Create/Innovate -->
@@ -428,7 +639,7 @@
                 </div>
 
                 <!-- ITEM 3 (LEFT): Global Development Public Policy (Grand Canal) -->
-                <div class="timeline-item left" data-category="offshore-ai policy-econ">
+                <div class="timeline-item left" data-category="naval-offshore ml-cad policy-econ">
                     <div class="sticker-wrapper orange-shadow">
                         <div class="faraway-sticker">
                             <div class="kanji-badge bg-orange-500">保</div> <!-- Protect -->
@@ -455,7 +666,7 @@
                 </div>
 
                 <!-- ITEM 4 (RIGHT): Risk Copilot Arctic -->
-                <div class="timeline-item right" data-category="offshore-ai">
+                <div class="timeline-item right" data-category="naval-offshore ml-cad">
                      <div class="sticker-wrapper purple-shadow">
                          <div class="faraway-sticker">
                             <div class="kanji-badge bg-purple-600">氷</div> <!-- Ice -->
@@ -474,7 +685,7 @@
                 </div>
 
                 <!-- ITEM 5 (LEFT): AutoCAD Drone -->
-                <div class="timeline-item left" data-category="cad-naval">
+                <div class="timeline-item left" data-category="ml-cad">
                     <div class="sticker-wrapper blue-shadow">
                         <div class="faraway-sticker">
                            <div class="kanji-badge bg-blue-500">図</div> <!-- Diagram/Drawing -->
@@ -517,7 +728,7 @@
                 </div>
 
                 <!-- ITEM 7 (LEFT): Maritime Financial Security -->
-                <div class="timeline-item left" data-category="policy-econ">
+                <div class="timeline-item left" data-category="naval-offshore policy-econ">
                     <div class="sticker-wrapper red-shadow">
                         <div class="faraway-sticker">
                            <div class="kanji-badge bg-red-600">防</div> <!-- Defense/Protection -->
@@ -541,7 +752,7 @@
                </div>
 
                 <!-- ITEM 8 (RIGHT): Generative AI Media -->
-                <div class="timeline-item right" data-category="offshore-ai">
+                <div class="timeline-item right" data-category="ml-cad">
                      <div class="sticker-wrapper green-shadow">
                          <div class="faraway-sticker">
                             <div class="kanji-badge bg-green-500">縁</div> <!-- Connection/Edge -->
@@ -560,7 +771,7 @@
                 </div>
 
                 <!-- ITEM 9 (LEFT): Maritime Economics & SCOOBY -->
-                <div class="timeline-item left" data-category="policy-econ">
+                <div class="timeline-item left" data-category="naval-offshore policy-econ">
                     <div class="sticker-wrapper orange-shadow">
                         <div class="faraway-sticker">
                            <div class="kanji-badge bg-orange-500">学</div> <!-- Learning/Academic -->
@@ -588,220 +799,267 @@
             </div>
         </section>
 
-        <!-- Lower Section Split for Trajectory and Honors -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
+        <!-- Balanced 2-Column Lower Section: Trajectory + Languages (Left) | Honors & Awards (Right) -->
+        <div id="trajectory" class="scroll-mt-24 grid grid-cols-1 lg:grid-cols-12 gap-12 mb-20 items-start">
             
-            <!-- Left Column (Academic Trajectory) -->
-            <section id="trajectory" class="scroll-mt-28">
-                <h2 class="text-3xl font-serif font-bold text-theme-ocean mb-8">Academic Trajectory</h2>
-                
-                <div class="space-y-6">
-                    <!-- UFRJ -->
-                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                        <div class="flex justify-between items-baseline mb-1">
-                            <h3 class="text-lg font-bold text-theme-ocean">Federal University of Rio de Janeiro</h3>
+            <!-- Left Column (7/12): Academic Trajectory + Compact Languages Grid -->
+            <div class="lg:col-span-6 space-y-10">
+                <section>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-3xl font-serif font-bold text-theme-ocean">Academic Trajectory</h2>
+                        <span class="text-xs font-mono text-gray-400 uppercase">Education</span>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <!-- UFRJ -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:border-theme-ocean/40 transition-colors">
+                            <div class="flex flex-wrap justify-between items-baseline gap-2 mb-1">
+                                <h3 class="text-base font-bold text-theme-ocean">Federal University of Rio de Janeiro (UFRJ)</h3>
+                                <span class="text-[11px] font-mono font-semibold text-theme-coral bg-red-50 px-2.5 py-0.5 rounded-full">AUG 2022 – AUG 2028</span>
+                            </div>
+                            <p class="text-xs font-semibold text-gray-800 mb-2">B.Sc. in Naval & Ocean Engineering (7th Semester)</p>
+                            <p class="text-xs text-gray-600 leading-relaxed">Focusing on offshore structures, hydrodynamics, and maritime systems. Bridging physical engineering with Machine Learning through the PRH-04 Program (funded by ANP at LAMCE/COPPE).</p>
                         </div>
-                        <p class="text-sm font-medium text-gray-800 mb-1">B.Sc. in Naval & Ocean Engineering (7th Semester)</p>
-                        <p class="text-xs font-mono text-gray-500 mb-3">AUG 2022 - AUG 2028</p>
-                        <p class="text-sm text-gray-600 leading-relaxed">Focusing on offshore structures, hydrodynamics, and maritime systems. Bridging physical engineering with Machine Learning through the PRH-04 Program (funded by ANP).</p>
-                    </div>
 
-                    <!-- Tsinghua -->
-                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden">
-                        <div class="absolute top-0 right-0 w-16 h-16 bg-red-50 rounded-bl-full flex items-start justify-end p-2">
-                            <span class="font-serif text-theme-coral text-xl">清</span>
+                        <!-- Tsinghua -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm relative overflow-hidden hover:border-theme-ocean/40 transition-colors">
+                            <div class="absolute top-0 right-0 w-12 h-12 bg-red-50 rounded-bl-full flex items-start justify-end p-2">
+                                <span class="font-serif text-theme-coral text-base">清</span>
+                            </div>
+                            <div class="flex flex-wrap justify-between items-baseline gap-2 mb-1 pr-10">
+                                <h3 class="text-base font-bold text-theme-ocean">Tsinghua University</h3>
+                                <span class="text-[11px] font-mono text-gray-500">JUL 2025 – JAN 2026</span>
+                            </div>
+                            <p class="text-xs font-semibold text-gray-800 mb-2">Tech & Management Exchange (Beijing, China)</p>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-3">Coursework bridging technical coding foundations (Computer Programming) with strategic frameworks (Project Management & Innovative Product Development).</p>
+                            <button onclick="openModal('cert_tsinghua.jpg.png')" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-file-alt text-theme-coral"></i> View Transcript</button>
                         </div>
-                        <h3 class="text-lg font-bold text-theme-ocean mb-1">Tsinghua University</h3>
-                        <p class="text-sm font-medium text-gray-800 mb-1">Tech & Management Exchange</p>
-                        <p class="text-xs font-mono text-gray-500 mb-3">JUL 2025 - JAN 2026</p>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4">Coursework bridging technical coding foundations (Computer Programming) with strategic frameworks (Project Management & Innovative Product Development).</p>
-                        <button onclick="openModal('cert_tsinghua.jpg.png')" class="text-xs font-bold text-theme-coral hover:text-red-700 transition-colors uppercase tracking-wider"><i class="fas fa-file-alt mr-1"></i> View Transcript</button>
-                    </div>
 
-                    <!-- Aspire -->
-                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                        <h3 class="text-lg font-bold text-theme-ocean mb-1">Aspire Institute</h3>
-                        <p class="text-sm font-medium text-gray-800 mb-1">Aspire Leaders Program</p>
-                        <p class="text-xs font-mono text-gray-500 mb-3">AUG - DEC 2025</p>
-                        <p class="text-sm text-gray-600 leading-relaxed mb-4">Graduated as a finalist (top 18% of 54,000+ global applicants). Founded by Harvard Business School faculty.</p>
-                        <div class="flex gap-4">
-                            <button onclick="openModal('Aspire-Certificate-1.pdf')" class="text-xs font-bold text-theme-coral hover:text-red-700 transition-colors uppercase tracking-wider"><i class="fas fa-certificate mr-1"></i> View Cert</button>
-                            <button onclick="openModal('Aspire-Acknowledgement-1.pdf')" class="text-xs font-bold text-theme-coral hover:text-red-700 transition-colors uppercase tracking-wider"><i class="fas fa-envelope mr-1"></i> View Letter</button>
+                        <!-- Aspire -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:border-theme-ocean/40 transition-colors">
+                            <div class="flex flex-wrap justify-between items-baseline gap-2 mb-1">
+                                <h3 class="text-base font-bold text-theme-ocean">Aspire Institute</h3>
+                                <span class="text-[11px] font-mono text-gray-500">AUG – DEC 2025</span>
+                            </div>
+                            <p class="text-xs font-semibold text-gray-800 mb-2">Aspire Leaders Program (Founded by Harvard Business School Faculty)</p>
+                            <p class="text-xs text-gray-600 leading-relaxed mb-3">Graduated as a global finalist (top 18% of 54,000+ applicants worldwide), focusing on organizational leadership and global impact.</p>
+                            <div class="flex flex-wrap gap-2.5">
+                                <button onclick="openModal('Aspire-Certificate-1.pdf')" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-certificate text-theme-coral"></i> View Certificate</button>
+                                <button onclick="openModal('Aspire-Acknowledgement-1.pdf')" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-3 py-1.5 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-envelope text-theme-coral"></i> View Letter</button>
+                            </div>
+                        </div>
+
+                        <!-- ORT -->
+                        <div class="bg-white p-5 rounded-xl border border-gray-200 shadow-sm hover:border-theme-ocean/40 transition-colors">
+                            <div class="flex flex-wrap justify-between items-baseline gap-2 mb-1">
+                                <h3 class="text-base font-bold text-theme-ocean">Escola ORT Brazil</h3>
+                                <span class="text-[11px] font-mono text-gray-500">2019 – 2021</span>
+                            </div>
+                            <p class="text-xs font-semibold text-gray-800 mb-1.5">Technical High School in Biotechnology</p>
+                            <p class="text-xs text-gray-600 leading-relaxed">Specialized technical education focused on applied environmental sciences and complex laboratory procedures.</p>
                         </div>
                     </div>
-
-                    <!-- ORT -->
-                    <div class="bg-white p-6 rounded-xl border border-gray-200 shadow-sm">
-                        <h3 class="text-lg font-bold text-theme-ocean mb-1">Escola ORT Brazil</h3>
-                        <p class="text-sm font-medium text-gray-800 mb-1">Technical High School - Biotechnology</p>
-                        <p class="text-xs font-mono text-gray-500 mb-3">2019 - 2021</p>
-                        <p class="text-sm text-gray-600 leading-relaxed">Specialized education focused on applied environmental sciences and complex laboratory procedures.</p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- Right Column (Honors & Languages) -->
-            <div>
-                <section class="mb-12">
-                    <h2 class="text-3xl font-serif font-bold text-theme-ocean mb-8">Honors & Awards</h2>
-                    <ul class="space-y-4">
-                        <!-- INT'L FESTIVAL OF YOUTH -->
-                        <li class="flex items-start bg-gradient-to-br from-purple-50 to-white p-5 rounded-xl border-2 border-purple-300 shadow-md relative overflow-hidden transform hover:-translate-y-1 transition-all duration-300">
-                            <div class="absolute -right-2 -bottom-4 text-purple-100 text-6xl opacity-50 pointer-events-none"><i class="fas fa-globe"></i></div>
-                            
-                            <div class="bg-purple-100 p-3 rounded-lg mr-4 relative z-10"><i class="fas fa-globe text-purple-700 text-lg"></i></div>
-                            <div class="relative z-10">
-                                <div class="flex flex-wrap items-center gap-2 mb-1">
-                                    <strong class="text-gray-900 block text-lg">International Festival of Youth (2026)</strong>
-                                </div>
-                                <span class="text-sm text-gray-700 block mb-4 font-medium leading-relaxed">Selected & Invited to join global leaders in science, education, and IT to shape the global youth agenda (Sep 11-17, 2026).</span>
-                                <div class="flex flex-wrap gap-3">
-                                    <button onclick="openModal('International_Festival_of_Youth_2026.pdf')" class="text-xs font-bold text-theme-ocean hover:text-purple-700 bg-white px-4 py-2 rounded-lg border border-purple-200 shadow-sm transition-colors"><i class="fas fa-expand mr-1"></i> View Cert 1</button>
-                                    <button onclick="openModal('Official_Invitation_to_International_Festival_of_Youth_2026.pdf')" class="text-xs font-bold text-theme-ocean hover:text-purple-700 bg-white px-4 py-2 rounded-lg border border-purple-200 shadow-sm transition-colors"><i class="fas fa-expand mr-1"></i> View Cert 2</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="flex items-start bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                            <div class="bg-blue-50 p-2 rounded-lg mr-4"><i class="fas fa-microphone-alt text-theme-ocean"></i></div>
-                            <div>
-                                <strong class="text-gray-900 block mb-1">Invited Presenter & Researcher</strong>
-                                <span class="text-sm text-gray-600 block mb-2">ANP RAA / PRH-ANP National Meeting (Salvador, Bahia – Oct 2026) - Presented the "Risk Copilot Búzios" offshore digital twin on-site to industry leaders.</span>
-                                <button onclick="openModal('ANP_Presentation_Cert.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> Presentation Cert</button>
-                            </div>
-                        </li>
-                        <li class="flex items-start bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                            <div class="bg-yellow-50 p-2 rounded-lg mr-4"><i class="fas fa-trophy text-yellow-600"></i></div>
-                            <div>
-                                <strong class="text-gray-900 block mb-1">Finalist</strong>
-                                <span class="text-sm text-gray-600 block mb-2">V Int'l Olympiad on Financial Security (2025).</span>
-                                <div class="flex flex-wrap gap-3">
-                                    <button onclick="openModal('Finalist_Cert.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> Finalist Cert</button>
-                                    <button onclick="openModal('Folk_Games_Certificate.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> Folk Games Cert</button>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="flex items-start bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                            <div class="bg-orange-50 p-2 rounded-lg mr-4"><i class="fas fa-award text-orange-600"></i></div>
-                            <div>
-                                <strong class="text-gray-900 block mb-1">Bronze Medal</strong>
-                                <span class="text-sm text-gray-600 block mb-2">Brazilian Nat'l Science Olympiad (2020).</span>
-                                <button onclick="openModal('Medal_Certificate.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> View Medal</button>
-                            </div>
-                        </li>
-                        
-                        <li class="flex items-start bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                            <div class="bg-red-50 p-2 rounded-lg mr-4"><i class="fas fa-comment-dots text-theme-coral"></i></div>
-                            <div>
-                                <strong class="text-gray-900 block mb-1">Japanese Oratory Contest, 連盟</strong>
-                                <span class="text-sm text-gray-600 block mb-2">Silver Medalist (2nd Place, 2026) & Three-Time Honoree (2024–2026) at Associação Nikkei.</span>
-                                <div class="flex flex-wrap gap-3">
-                                    <button onclick="openModal('cert_45th.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> 45TH CONTEST</button>
-                                    <button onclick="openModal('cert_46th.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> 46TH CONTEST</button>
-                                    <button onclick="openModal('cert_47th.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> 47TH CONTEST (SILVER)</button>
-                                </div>
-                            </div>
-                        </li>
-
-                        <li class="flex items-start bg-white p-4 rounded-lg border border-gray-100 shadow-sm">
-                            <div class="bg-green-50 p-2 rounded-lg mr-4"><i class="fas fa-plane text-green-600"></i></div>
-                            <div>
-                                <strong class="text-gray-900 block mb-1">Scholarship & Tech Visit</strong>
-                                <span class="text-sm text-gray-600 block mb-2">World ORT Ecology Summer Sch. (Panama, 2020). Included technical visit to the Panama Canal.</span>
-                                <button onclick="openModal('World_Ort_Cert.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-expand"></i> View ORT Cert</button>
-                            </div>
-                        </li>
-                    </ul>
                 </section>
 
-                <!-- Languages -->
+                <!-- Languages (Sleek 2-Column Executive Grid) -->
                 <section>
-                    <h2 class="text-2xl font-serif font-bold text-theme-ocean mb-6">Languages</h2>
-                    <div class="space-y-3">
-                        <div class="bg-white border border-gray-200 p-4 rounded-lg flex justify-between items-center shadow-sm">
-                            <div><span class="font-bold text-gray-900 block">Portuguese</span><span class="text-xs text-gray-500 font-mono">NATIVE</span></div>
-                        </div>
-                        <div class="bg-white border border-gray-200 p-4 rounded-lg flex justify-between items-center shadow-sm">
-                            <div><span class="font-bold text-gray-900 block">English</span><span class="text-xs text-gray-500 font-mono">C1 ADVANCED</span></div>
-                            <div class="text-right">
-                                <span class="text-[10px] font-mono text-gray-400 block mb-1">IBEU GLOBAL DIPLOMA</span>
-                                <button onclick="openModal('English_Certificate.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-file-image"></i> View</button>
+                    <div class="flex items-center justify-between mb-4">
+                        <h2 class="text-2xl font-serif font-bold text-theme-ocean">Languages</h2>
+                        <span class="text-xs font-mono text-gray-400 uppercase">5 Languages</span>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div class="bg-white border border-gray-200 p-3.5 rounded-xl flex justify-between items-center shadow-sm">
+                            <div>
+                                <span class="font-bold text-sm text-theme-ocean block">Portuguese</span>
+                                <span class="text-[11px] text-gray-500 font-mono">NATIVE</span>
                             </div>
+                            <span class="text-[10px] font-mono text-gray-400 bg-gray-50 px-2 py-1 rounded">BR</span>
                         </div>
-                        <div class="bg-white border border-gray-200 p-4 rounded-lg flex justify-between items-center shadow-sm">
-                            <div><span class="font-bold text-gray-900 block">Italian</span><span class="text-xs text-gray-500 font-mono">B1.2 INTERMEDIATE</span></div>
-                            <div class="text-right">
-                                <span class="text-[10px] font-mono text-gray-400 block mb-1">ISTITUTO ITALIANO</span>
-                                <button onclick="openModal('Italian_Certificate.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-file-image"></i> View</button>
+                        <div class="bg-white border border-gray-200 p-3.5 rounded-xl flex justify-between items-center shadow-sm">
+                            <div>
+                                <span class="font-bold text-sm text-theme-ocean block">English</span>
+                                <span class="text-[11px] text-gray-500 font-mono">C1 ADVANCED</span>
                             </div>
+                            <button onclick="openModal('English_Certificate.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1.5 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-file-image mr-1"></i>IBEU Cert</button>
                         </div>
-                        <div class="bg-white border border-gray-200 p-4 rounded-lg flex justify-between items-center shadow-sm">
-                            <div><span class="font-bold text-gray-900 block">Japanese</span><span class="text-xs text-gray-500 font-mono">BASIC (MOD 3)</span></div>
-                            <div class="text-right">
-                                <span class="text-[10px] font-mono text-gray-400 block mb-1">ASSOC. NIKKEI</span>
-                                <button onclick="openModal('Japanese_Certificate.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral"><i class="fas fa-file-image"></i> View</button>
+                        <div class="bg-white border border-gray-200 p-3.5 rounded-xl flex justify-between items-center shadow-sm">
+                            <div>
+                                <span class="font-bold text-sm text-theme-ocean block">Italian</span>
+                                <span class="text-[11px] text-gray-500 font-mono">B1.2 INTERMEDIATE</span>
                             </div>
+                            <button onclick="openModal('Italian_Certificate.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1.5 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-file-image mr-1"></i>IIC Cert</button>
                         </div>
-                        <div class="bg-white border border-gray-200 p-4 rounded-lg flex justify-between items-center shadow-sm">
-                            <div><span class="font-bold text-gray-900 block">Russian</span><span class="text-xs text-gray-500 font-mono">ELEMENTARY</span></div>
-                            <span class="text-[10px] font-mono font-bold text-theme-coral bg-red-50 px-2 py-1 rounded">RUDN SCHOLARSHIP</span>
+                        <div class="bg-white border border-gray-200 p-3.5 rounded-xl flex justify-between items-center shadow-sm">
+                            <div>
+                                <span class="font-bold text-sm text-theme-ocean block">Japanese</span>
+                                <span class="text-[11px] text-gray-500 font-mono">BASIC (MOD 3)</span>
+                            </div>
+                            <button onclick="openModal('Japanese_Certificate.jpg')" class="text-xs font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1.5 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-file-image mr-1"></i>Nikkei Cert</button>
+                        </div>
+                        <div class="bg-white border border-gray-200 p-3.5 rounded-xl flex justify-between items-center shadow-sm sm:col-span-2">
+                            <div>
+                                <span class="font-bold text-sm text-theme-ocean block">Russian</span>
+                                <span class="text-[11px] text-gray-500 font-mono">ELEMENTARY</span>
+                            </div>
+                            <span class="text-[10px] font-mono font-bold text-theme-coral bg-red-50 px-2.5 py-1 rounded-full border border-red-100">RUDN UNIVERSITY SCHOLARSHIP</span>
                         </div>
                     </div>
                 </section>
             </div>
+
+            <!-- Right Column (6/12): Honors & Awards -->
+            <div class="lg:col-span-6">
+                <section>
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-3xl font-serif font-bold text-theme-ocean">Honors & Awards</h2>
+                        <span class="text-xs font-mono text-gray-400 uppercase">Global & National</span>
+                    </div>
+
+                    <ul class="space-y-3.5">
+                        <!-- INT'L FESTIVAL OF YOUTH -->
+                        <li class="flex items-start bg-gradient-to-br from-purple-50 to-white p-4.5 rounded-xl border-2 border-purple-300 shadow-sm relative overflow-hidden">
+                            <div class="absolute -right-2 -bottom-4 text-purple-100 text-6xl opacity-50 pointer-events-none"><i class="fas fa-globe"></i></div>
+                            <div class="bg-purple-100 p-2.5 rounded-lg mr-3.5 relative z-10 shrink-0"><i class="fas fa-globe text-purple-700"></i></div>
+                            <div class="relative z-10">
+                                <strong class="text-theme-ocean block text-sm font-bold mb-0.5">International Festival of Youth (2026)</strong>
+                                <span class="text-xs text-gray-700 block mb-2.5 leading-relaxed">Selected & Invited Global Delegate in science, education, and IT to shape the global youth agenda (Sep 11–17, 2026).</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="openModal('International_Festival_of_Youth_2026.pdf')" class="text-[11px] font-bold text-theme-ocean hover:text-purple-700 bg-white px-3 py-1 rounded-lg border border-purple-200 shadow-sm transition-colors"><i class="fas fa-expand mr-1"></i> View Cert 1</button>
+                                    <button onclick="openModal('Official_Invitation_to_International_Festival_of_Youth_2026.pdf')" class="text-[11px] font-bold text-theme-ocean hover:text-purple-700 bg-white px-3 py-1 rounded-lg border border-purple-200 shadow-sm transition-colors"><i class="fas fa-expand mr-1"></i> View Cert 2</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- ANP RAA SALVADOR -->
+                        <li class="flex items-start bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div class="bg-blue-50 p-2.5 rounded-lg mr-3.5 shrink-0"><i class="fas fa-microphone-alt text-theme-ocean"></i></div>
+                            <div>
+                                <strong class="text-theme-ocean text-sm font-bold block mb-0.5">Invited Presenter & Researcher — ANP RAA (2026)</strong>
+                                <span class="text-xs text-gray-600 block mb-2 leading-relaxed">PRH-ANP National Meeting (Salvador, Bahia – Oct 2026). Presented the "Risk Copilot Búzios" offshore digital twin on-site to oil & gas industry leaders.</span>
+                                <button onclick="openModal('ANP_Presentation_Cert.jpg')" class="inline-flex items-center gap-1.5 text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-3 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand text-theme-coral"></i> Presentation Cert</button>
+                            </div>
+                        </li>
+
+                        <!-- GOLD & SILVER INNOVATION MEDALS SUMMARY -->
+                        <li class="flex items-start bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div class="bg-amber-50 p-2.5 rounded-lg mr-3.5 shrink-0"><i class="fas fa-medal text-amber-500"></i></div>
+                            <div>
+                                <strong class="text-theme-ocean text-sm font-bold block mb-0.5">Gold & Silver Medalist — China-Latam Innovation Contests (2026)</strong>
+                                <span class="text-xs text-gray-600 block mb-2 leading-relaxed"><strong>Gold Medal (Team Leader)</strong> at China Int'l Innovation Competition; <strong>Silver Medal (Top 12)</strong> & <strong>Outstanding Recorder (Best Overall)</strong> at the Poverty Alleviation Challenge; <strong>Top 35 Honorable Proposal</strong> at Renmin Univ.</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="openModal('Finals_of_China_International_College_Students_Innovation_Competition_brazil.pdf')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>Gold Cert</button>
+                                    <button onclick="openModal('Finalist_Sino_Latam_Streamline.pdf')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>Silver Cert</button>
+                                    <button onclick="openModal('Outstanding_Recorder_Certificate.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>Recorder Cert</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- GEEP & FINANCIAL SECURITY FINALIST -->
+                        <li class="flex items-start bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div class="bg-yellow-50 p-2.5 rounded-lg mr-3.5 shrink-0"><i class="fas fa-trophy text-yellow-600"></i></div>
+                            <div>
+                                <strong class="text-theme-ocean text-sm font-bold block mb-0.5">Global Finalist — GEEP (2026) & Financial Security Olympiad (2025)</strong>
+                                <span class="text-xs text-gray-600 block mb-2 leading-relaxed">Recognized by GEEP/NAAEE for <em>The Blue Diplomacy Network</em> (2026) and Finalist in Krasnoyarsk, Russia at the V Int'l Olympiad on Financial Security (2025).</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="openModal('GEEP_Finalist_Cert.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>GEEP Cert</button>
+                                    <button onclick="openModal('Finalist_Cert.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>Russia Finalist</button>
+                                    <button onclick="openModal('Folk_Games_Certificate.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>Folk Games</button>
+                                </div>
+                            </div>
+                        </li>
+                        
+                        <!-- JAPANESE ORATORY -->
+                        <li class="flex items-start bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div class="bg-red-50 p-2.5 rounded-lg mr-3.5 shrink-0"><i class="fas fa-comment-dots text-theme-coral"></i></div>
+                            <div>
+                                <strong class="text-theme-ocean text-sm font-bold block mb-0.5">Japanese Oratory Contest, 連盟 (2024–2026)</strong>
+                                <span class="text-xs text-gray-600 block mb-2 leading-relaxed">Silver Medalist (2nd Place, 2026) & Three-Time Honoree at Associação Nikkei do Rio de Janeiro.</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="openModal('cert_47th.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>47th (Silver)</button>
+                                    <button onclick="openModal('cert_46th.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>46th</button>
+                                    <button onclick="openModal('cert_45th.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>45th</button>
+                                </div>
+                            </div>
+                        </li>
+
+                        <!-- SCIENCE OLYMPIAD & WORLD ORT -->
+                        <li class="flex items-start bg-white p-4 rounded-xl border border-gray-200 shadow-sm">
+                            <div class="bg-green-50 p-2.5 rounded-lg mr-3.5 shrink-0"><i class="fas fa-award text-green-600"></i></div>
+                            <div>
+                                <strong class="text-theme-ocean text-sm font-bold block mb-0.5">National Science Bronze Medal & Panama Canal Tech Visit (2020)</strong>
+                                <span class="text-xs text-gray-600 block mb-2 leading-relaxed">Bronze Medalist at the Brazilian Nat'l Science Olympiad & Scholarship recipient for World ORT Ecology Summer School in Panama.</span>
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="openModal('Medal_Certificate.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>Science Medal</button>
+                                    <button onclick="openModal('World_Ort_Cert.jpg')" class="text-[11px] font-bold text-theme-ocean hover:text-theme-coral bg-gray-50 px-2.5 py-1 rounded-lg border border-gray-200 transition-colors"><i class="fas fa-expand mr-1"></i>World ORT Cert</button>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </section>
+            </div>
         </div>
 
-        <section id="endorsements" class="mt-24 pt-16 border-t border-gray-200 scroll-mt-28">
-            <h2 class="text-3xl font-serif font-bold text-theme-ocean mb-12 text-center">Academic Endorsements</h2>
+        <!-- Symmetrical Bento Grid for Academic Endorsements -->
+        <section id="endorsements" class="mt-20 pt-14 border-t border-gray-200 scroll-mt-24">
+            <div class="text-center mb-10">
+                <h2 class="text-3xl font-serif font-bold text-theme-ocean mb-2">Academic Endorsements</h2>
+                <p class="text-gray-500 font-mono text-xs tracking-widest uppercase">Recommendations from Faculty & Research Advisors</p>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Quote 1 -->
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col hover:shadow-md transition-shadow">
-                    <i class="fas fa-quote-left text-3xl text-gray-200 mb-4"></i>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">"She has established herself as a promising researcher with strong potential for academic and technical performance at an international level... demonstrating remarkable ability in integrating concepts of ocean engineering, computational modeling, and risk analysis."</p>
-                    <div class="border-t border-gray-100 pt-4 mt-auto">
+            <div class="grid grid-cols-1 md:grid-cols-6 gap-5">
+                <!-- Quote 1 (Featured Primary Advisor - Spans 3 cols) -->
+                <div class="md:col-span-3 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col hover:shadow-md transition-shadow relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <i class="fas fa-quote-left text-2xl text-theme-coral/40"></i>
+                        <span class="text-[10px] font-mono font-semibold text-theme-ocean bg-blue-50 px-2.5 py-0.5 rounded-full">OFFSHORE & AI ADVISOR</span>
+                    </div>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5 flex-grow">"She has established herself as a promising researcher with strong potential for academic and technical performance at an international level... demonstrating remarkable ability in integrating concepts of ocean engineering, computational modeling, and risk analysis."</p>
+                    <div class="border-t border-gray-100 pt-3 mt-auto">
                         <p class="font-bold text-sm text-theme-ocean">Prof. Luiz Paulo Assad</p>
                         <p class="text-xs text-gray-500">Tech Coordinator, LAMCE/COPPE - UFRJ</p>
                     </div>
                 </div>
 
-                <!-- Quote 2 -->
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col hover:shadow-md transition-shadow">
-                    <i class="fas fa-quote-left text-3xl text-gray-200 mb-4"></i>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">"I emphatically recommend her not only for her excellent intellect but also for her upright character. She demonstrated an unwavering dedication to learning and academic excellence."</p>
-                    <div class="border-t border-gray-100 pt-4 mt-auto">
-                        <p class="font-bold text-sm text-theme-ocean">Prof. Dr. Gladys C. Silva</p>
-                        <p class="text-xs text-gray-500">Assoc. Prof, Univ. of Amazonas / Escola ORT</p>
+                <!-- Quote 5 (Experimental & Group Coordination - Spans 3 cols) -->
+                <div class="md:col-span-3 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col hover:shadow-md transition-shadow">
+                    <div class="flex items-center justify-between mb-3">
+                        <i class="fas fa-quote-left text-2xl text-gray-200"></i>
+                        <span class="text-[10px] font-mono font-semibold text-gray-500 bg-gray-100 px-2.5 py-0.5 rounded-full">TEAMWORK & LAB LEADERSHIP</span>
+                    </div>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5 flex-grow">"Apart from her technical skills Anna Paula is also a very good student, with great academic performance. Our course is heavily focused on complex experimental procedures so group coordination is a necessity. She showed good group skills, always performing her tasks as intended."</p>
+                    <div class="border-t border-gray-100 pt-3 mt-auto">
+                        <p class="font-bold text-sm text-theme-ocean">Prof. Eduardo Gamosa de Oliveira</p>
+                        <p class="text-xs text-gray-500">Head of Biotechnology Department, Escola ORT</p>
                     </div>
                 </div>
 
-                <!-- Quote 3 -->
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col hover:shadow-md transition-shadow">
-                    <i class="fas fa-quote-left text-3xl text-gray-200 mb-4"></i>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">"Ms. Tambasco has demonstrated a high level of understanding and notable ability in critical thinking and teamwork. She demonstrates a great ability to adapt and continually learn."</p>
-                    <div class="border-t border-gray-100 pt-4 mt-auto">
+                <!-- Quote 3 (Physics UFRJ - Spans 2 cols) -->
+                <div class="md:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col hover:shadow-md transition-shadow">
+                    <i class="fas fa-quote-left text-xl text-gray-200 mb-3"></i>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5 flex-grow">"Ms. Tambasco has demonstrated a high level of understanding and notable ability in critical thinking and teamwork. She demonstrates a great ability to adapt and continually learn."</p>
+                    <div class="border-t border-gray-100 pt-3 mt-auto">
                         <p class="font-bold text-sm text-theme-ocean">Prof. Dr. Angelo M. Gomes</p>
                         <p class="text-xs text-gray-500">Associate Professor, Physics Institute - UFRJ</p>
                     </div>
                 </div>
                 
-                <!-- Quote 4 -->
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col hover:shadow-md transition-shadow">
-                    <i class="fas fa-quote-left text-3xl text-gray-200 mb-4"></i>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">"The student is proactive and presents a good capacity for communication... always seeking to have her doubts resolved and always available to assist with the doubts of other students."</p>
-                    <div class="border-t border-gray-100 pt-4 mt-auto">
+                <!-- Quote 4 (Graphic Expression / CAD UFRJ - Spans 2 cols) -->
+                <div class="md:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col hover:shadow-md transition-shadow">
+                    <i class="fas fa-quote-left text-xl text-gray-200 mb-3"></i>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5 flex-grow">"The student is proactive and presents a good capacity for communication... always seeking to have her doubts resolved and always available to assist with the doubts of other students."</p>
+                    <div class="border-t border-gray-100 pt-3 mt-auto">
                         <p class="font-bold text-sm text-theme-ocean">Prof. Aline Freitas, M.Sc.</p>
                         <p class="text-xs text-gray-500">Assistant Professor, Graphic Expression - UFRJ</p>
                     </div>
                 </div>
 
-                <!-- Quote 5 -->
-                <div class="bg-white p-8 rounded-xl border border-gray-100 shadow-sm flex flex-col hover:shadow-md transition-shadow lg:col-span-2">
-                    <i class="fas fa-quote-left text-3xl text-gray-200 mb-4"></i>
-                    <p class="text-gray-600 text-sm leading-relaxed mb-8 flex-grow">"Apart from her technical skills Anna Paula is also a very good student, with great academic performance. Our course is heavily focused on complex experimental procedures so group coordination is a necessity. She showed good group skills, always performing her tasks as intended."</p>
-                    <div class="border-t border-gray-100 pt-4 mt-auto">
-                        <p class="font-bold text-sm text-theme-ocean">Prof. Eduardo Gamosa de Oliveira</p>
-                        <p class="text-xs text-gray-500">Head of Biotechnology Department, Escola ORT</p>
+                <!-- Quote 2 (Academic Excellence - Spans 2 cols) -->
+                <div class="md:col-span-2 bg-white p-6 rounded-xl border border-gray-200 shadow-sm flex flex-col hover:shadow-md transition-shadow">
+                    <i class="fas fa-quote-left text-xl text-gray-200 mb-3"></i>
+                    <p class="text-gray-600 text-xs sm:text-sm leading-relaxed mb-5 flex-grow">"I emphatically recommend her not only for her excellent intellect but also for her upright character. She demonstrated an unwavering dedication to learning and academic excellence."</p>
+                    <div class="border-t border-gray-100 pt-3 mt-auto">
+                        <p class="font-bold text-sm text-theme-ocean">Prof. Dr. Gladys C. Silva</p>
+                        <p class="text-xs text-gray-500">Assoc. Prof, Univ. of Amazonas / Escola ORT</p>
                     </div>
                 </div>
             </div>
@@ -866,6 +1124,12 @@
 
         // Initialize petals
         window.onload = () => {
+            // Duplicate footprint track children once for seamless infinite auto-scroll
+            const track = document.getElementById('footprintTrack');
+            if (track) {
+                track.innerHTML += track.innerHTML;
+            }
+
             // Spawn initial batch across the screen
             for(let i=0; i<12; i++) {
                 setTimeout(createPetal, Math.random() * 3000);
